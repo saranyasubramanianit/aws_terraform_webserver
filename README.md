@@ -36,4 +36,4 @@ This repo contains terraform code to provision AWS infrastructure with nginx web
 
   ### Note
 
-  Autoscaling entries are commented out in main.tf . if need they can be applied after removing the comment.
+  Autoscaling entries are commented out in main.tf . If autoscaling group is need they can be applied after removing the comment.
