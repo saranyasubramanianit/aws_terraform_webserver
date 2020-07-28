@@ -2,7 +2,7 @@
 
 This repo contains terraform code to provision AWS infrastructure with nginx webserver in Ubuntu Linux and ELB infront of EC2 instance.
 
-### Prerequisties:
+### Prerequisties
 
  In order to execute this code , We need below seetings available already,
   
@@ -16,7 +16,7 @@ This repo contains terraform code to provision AWS infrastructure with nginx web
    2. S3 bucket with name my-tfstatebucket to store the terraform state file.
 
 
- ### Running the automation:
+ ### Running the automation
     
     ```
      terraform init 
@@ -34,7 +34,6 @@ This repo contains terraform code to provision AWS infrastructure with nginx web
 
   Open the browser and access the elb_dns url
 
-
   ### Note
 
-    Autoscaling entries are commented out in main.tf . if need they can be applied after removing the comment.
+  Autoscaling entries are commented out in main.tf . if need they can be applied after removing the comment.
