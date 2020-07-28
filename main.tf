@@ -40,7 +40,7 @@ resource "aws_elb" "example" {
         target              = "HTTP:80/"
         interval            = 10
             }
-   instances                   = ["${aws_instance.example.*.id}"]
+   instances                   = ["${aws_instance.example.id}"]
    idle_timeout                = 400
    connection_draining         = true
    connection_draining_timeout = 400
