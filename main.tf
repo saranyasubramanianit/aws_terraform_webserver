@@ -5,12 +5,12 @@ provider "aws"
 
 resource "aws_instance" "example"
 {
-  ami           = "ami-0a0ddd875a1ea2c7f"
-	key_name      = "terr_key"
+        ami           = "ami-0a0ddd875a1ea2c7f"
+	key_name      = "temp_key"
 	instance_type = "t2.micro" 
 	availability_zone = "us-east-1c"
-    security_groups = ["${aws_security_group.ec2.name}"]
-    user_data = <<-EOF
+        security_groups = ["${aws_security_group.ec2.name}"]
+        user_data = <<-EOF
                     #!/bin/bash
                     sudo apt update -y 
                     sudo apt install nginx -y
@@ -53,43 +53,34 @@ resource "aws_elb" "example" {
 
 resource "aws_security_group" "ec2"
 {
-	name = "ec2"
-	description = "securitygroup"
-	
-
+    name = "ec2"
+    description = "securitygroup"
     ingress
 	{
       from_port = 22
       to_port = 22
       protocol = "tcp"
-
       cidr_blocks = ["0.0.0.0/0"]
-
 	}
-	ingress
+     ingress
 	{
       from_port = 80
       to_port = 80
       protocol = "tcp"
-
       cidr_blocks = ["0.0.0.0/0"]
-
 	}
-	ingress
+     ingress
 	{
       from_port = 443
       to_port = 443
       protocol = "tcp"
-
       cidr_blocks = ["0.0.0.0/0"]
-
 	}
 	egress
 	{
 	  from_port = 0
       to_port = 0
       protocol = "-1"
-
       cidr_blocks = ["0.0.0.0/0"]
 	}
 }
@@ -107,13 +98,11 @@ resource "aws_autoscaling_group" "example"
     launch_configuration      = "${aws_launch_configuration.example.name}"
   }
 
-
 resource "aws_launch_configuration" "example"
     {
         image_id         = "ami-0a0ddd875a1ea2c7f"
-		key_name     = "terr_key"
-		instance_type = "t2.micro" 
-		
+	key_name         = "temp_key"
+	instance_type    = "t2.micro" 		
         security_groups = ["${aws_security_group.ec2.name}"]
         user_data = <<-EOF
                     #!/bin/bash
@@ -126,8 +115,6 @@ resource "aws_launch_configuration" "example"
         lifecycle {
             create_before_destroy = true
         }
-        
-
 }
 resource "aws_autoscaling_attachment" "asg_attachment" {
   autoscaling_group_name = "${aws_autoscaling_group.example.id}"
